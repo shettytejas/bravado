@@ -1,0 +1,66 @@
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+primary: &primary
+  <<: *default
+  migrations_paths: "db/migrate/primary"
+  schema_dump: "schema/primary.rb"
+
+cable: &cable
+  <<: *default
+  migrations_paths: "db/migrate/cable"
+  schema_dump: "schema/cable.rb"
+
+cache: &cache
+  <<: *default
+  migrations_paths: "db/migrate/cache"
+  schema_dump: "schema/cache.rb"
+
+queue: &queue
+  <<: *default
+  migrations_paths: "db/migrate/queue"
+  schema_dump: "schema/queue.rb"
+
+development:
+  primary:
+    <<: *primary
+    database: db/storage/development/primary.sqlite3
+  cable:
+    <<: *cable
+    database: db/storage/development/cable.sqlite3
+  cache:
+    <<: *cache
+    database: db/storage/development/cache.sqlite3
+  queue:
+    <<: *queue
+    database: db/storage/development/queue.sqlite3
+
+test:
+  primary:
+    <<: *primary
+    database: db/storage/test/primary.sqlite3
+  cable:
+    <<: *cable
+    database: db/storage/test/cable.sqlite3
+  cache:
+    <<: *cache
+    database: db/storage/test/cache.sqlite3
+  queue:
+    <<: *queue
+    database: db/storage/test/queue.sqlite3
+
+production:
+  primary:
+    <<: *primary
+    database: db/storage/production/primary.sqlite3
+  cable:
+    <<: *cable
+    database: db/storage/production/cable.sqlite3
+  cache:
+    <<: *cache
+    database: db/storage/production/cache.sqlite3
+  queue:
+    <<: *queue
+    database: db/storage/production/queue.sqlite3
