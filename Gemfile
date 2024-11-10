@@ -2,10 +2,12 @@ source "https://rubygems.org"
 
 ruby file: ".tool-versions"
 
+gem "bcrypt"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "image_processing"
 gem "jsbundling-rails"
+gem "name_of_person"
 gem "propshaft"
 gem "puma"
 gem "rails"
