@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :profile, only: [:show, :edit, :update]
   resource :onboarding, only: [:new, :create]
   resource :session
 
@@ -12,6 +13,6 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Temporary Root. Needs to be an Activity Feed Page.
+  root "profiles#show"
 end
